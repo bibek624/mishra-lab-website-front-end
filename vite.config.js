@@ -4,8 +4,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // Set base for GitHub Pages (repo name)
-  base: '/mishra-lab-website-front-end/',
+  // Use relative base so it works under any subpath (GitHub Pages)
+  base: './',
   plugins: [vue(),
     tailwindcss(),
   ],
