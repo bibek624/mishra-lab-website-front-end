@@ -1,7 +1,8 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { getResearchBySlug } from '../data/research.js'
+import { PEOPLE } from '../data/people.js'
 
 const route = useRoute()
 const data = ref(null)
@@ -21,6 +22,29 @@ function next() {
 onMounted(() => {
   const slug = route.params.slug
   data.value = getResearchBySlug(String(slug))
+})
+
+const members = computed(() => {
+  if (!data.value) return []
+  const researchId = data.value.id
+  const people = PEOPLE.filter(p => Array.isArray(p.researchIds) && p.researchIds.includes(researchId))
+  const normalized = people.map(p => ({
+    id: p.id,
+    name: p.name,
+    role: p.role === 'Student' ? 'Contributor' : (p.role === 'PI' ? 'PI' : 'Contributor'),
+    photo: p.photo,
+    slug: p.slug,
+  }))
+  const leadId = data.value.leadStudentId
+  const lead = normalized.find(m => m.id === leadId)
+  const pi = normalized.find(m => PEOPLE.find(p => p.id === m.id)?.role === 'PI')
+  const membersOnly = normalized.filter(m => m !== lead && m !== pi)
+  // Ensure there is always a lead, at least one member (if exists), then PI
+  const ordered = []
+  if (lead) ordered.push({ ...lead, role: 'Lead Student' })
+  ordered.push(...membersOnly)
+  if (pi) ordered.push({ ...pi, role: 'PI' })
+  return ordered
 })
 </script>
 
@@ -60,14 +84,22 @@ onMounted(() => {
       </div>
     </section>
 
-    <section v-if="data.members?.length" class="space-y-5">
-      <h2 class="text-2xl font-semibold">Research Members</h2>
+    <section v-if="members.length" class="space-y-5">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-semibold">Research Members</h2>
+        <!-- <div v-if="data.leadStudentId" class="text-sm text-[var(--text-muted)]">
+          Lead student:
+          <span class="font-medium">
+            {{ (PEOPLE.find(p=>p.id===data.leadStudentId)?.name) || '—' }} 
+          </span>
+        </div> -->
+      </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-        <div v-for="m in data.members" :key="m.name" class="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 flex flex-col items-center text-center">
+        <router-link v-for="m in members" :key="m.slug" :to="{ name: 'people-profile', params: { slug: m.slug } }" class="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 flex flex-col items-center text-center">
           <img :src="m.photo" :alt="m.name" class="h-16 w-16 rounded-full object-cover" />
           <p class="mt-3 font-medium">{{ m.name }}</p>
           <p class="text-sm text-[var(--text-muted)]">{{ m.role }}</p>
-        </div>
+        </router-link>
       </div>
     </section>
 

@@ -201,6 +201,14 @@ Fonts load (sketch):
  - Groups: PI, Postdocs, Current Students (PhD/MSc), Alumni
  - Each person links to future `/people/:slug` profile detail
 
+### People Profile (`/people/:slug`)
+- Header: rounded photo, name, short bio, current affiliation (title, unit, organization)
+- Sections:
+  - Education (degree, field, institution, year)
+  - Past affiliations (bulleted list)
+  - Research involvement (links to research detail)
+  - Publications authored (title, authors, venue, date, type, DOI)
+
 ### Research
 - `ResearchCard` (image, title, short description, category chip, start date)
 - `ResearchGrid` with filters and infinite scroll

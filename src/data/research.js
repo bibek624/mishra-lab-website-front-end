@@ -60,6 +60,25 @@ const RESEARCH_DETAILS = {
   },
 }
 
+// Optional mapping of lead student per research
+const LEAD_STUDENTS = {
+  // Materials
+  'mat-001': 'pd-1',
+  'mat-002': 'pd-1',
+  'mat-003': 'phd-1',
+  'mat-004': 'pd-1',
+  // Railroad
+  'rail-001': 'msc-1',
+  'rail-002': 'msc-1',
+  'rail-003': 'msc-1',
+  'rail-004': 'msc-1',
+  // Sustainability
+  'sus-001': 'phd-1',
+  'sus-002': 'phd-1',
+  'sus-003': 'phd-1',
+  'sus-004': 'phd-1',
+}
+
 export function getResearchBySlug(slug) {
   const base = RESEARCH_ITEMS.find((i) => i.slug === slug)
   if (!base) return null
@@ -79,7 +98,8 @@ export function getResearchBySlug(slug) {
       { id: 'p1', year: new Date(base.startDate).getFullYear(), title: `${base.title} – preliminary results`, authors: 'Team', venue: 'Preprint', doi: '', url: '#' },
     ],
   }
-  return { ...base, ...details }
+  const leadStudentId = details.leadStudentId || LEAD_STUDENTS[base.id] || null
+  return { ...base, ...details, leadStudentId }
 }
 
 
