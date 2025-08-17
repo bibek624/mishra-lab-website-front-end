@@ -28,7 +28,7 @@ const sponsors = [
 <template>
   <section class="space-y-16">
     <!-- Hero -->
-    <section class="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-8 md:p-12">
+    <section class="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-8 md:p-12" v-reveal>
       <div class="max-w-3xl">
         <h1 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight">Engineering research for resilient, sustainable infrastructure</h1>
         <p class="mt-4 text-[var(--text-muted)]">We blend data-driven methods with domain expertise across materials, rail systems, and sustainability—delivering open, reproducible science with real-world impact.</p>
@@ -40,7 +40,7 @@ const sponsors = [
     </section>
 
     <!-- Research highlights -->
-    <section class="space-y-6">
+    <section class="space-y-6" v-reveal>
       <div class="flex items-end justify-between">
         <h2 class="text-2xl font-semibold">Research highlights</h2>
         <router-link to="/research" class="text-sm text-[color:var(--brand)] hover:underline">See all</router-link>
@@ -51,7 +51,7 @@ const sponsors = [
     </section>
 
     <!-- Featured publication -->
-    <section v-if="featuredPublication" class="space-y-4">
+    <section v-if="featuredPublication" class="space-y-4" v-reveal>
       <h2 class="text-2xl font-semibold">Featured publication</h2>
       <div class="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6">
         <div class="flex flex-wrap items-baseline justify-between gap-3">
@@ -68,7 +68,7 @@ const sponsors = [
     </section>
 
     <!-- People highlight -->
-    <section v-if="principalInvestigator" class="space-y-4">
+    <section v-if="principalInvestigator" class="space-y-4" v-reveal>
       <h2 class="text-2xl font-semibold">Meet the PI</h2>
       <div class="flex justify-start">
         <PersonCard :person="principalInvestigator" />
@@ -87,7 +87,7 @@ const sponsors = [
     </section>
 
     <!-- Sponsors strip -->
-    <section class="space-y-4">
+    <section class="space-y-4" v-reveal>
       <h2 class="text-2xl font-semibold">Partners</h2>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 items-center">
         <div v-for="s in sponsors" :key="s.name" class="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 flex items-center justify-center">

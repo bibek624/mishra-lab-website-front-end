@@ -17,18 +17,18 @@ function formatDate(iso) {
 </script>
 
 <template>
-  <article class="group rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--surface)] shadow-soft transition-transform duration-200 hover:-translate-y-0.5">
-    <div class="aspect-[16/10] bg-[color:var(--border)]/40 relative">
+  <article class="group rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--surface)] shadow-soft transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-lg">
+    <div class="aspect-[16/10] bg-[color:var(--border)]/40 relative overflow-hidden">
       <img
         v-if="item.image"
         :src="item.image"
         :alt="item.title"
-        class="absolute inset-0 h-full w-full object-cover"
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         loading="lazy"
         decoding="async"
       />
     </div>
-    <div class="p-4">
+    <div class="p-4" v-reveal>
       <div class="flex items-center justify-between gap-2">
         <span class="inline-flex items-center px-2 py-0.5 text-xs rounded-full border border-[var(--border)] text-[var(--text-muted)]">{{ item.category }}</span>
         <time class="text-xs text-[var(--text-muted)]">{{ formatDate(item.startDate) }}</time>
