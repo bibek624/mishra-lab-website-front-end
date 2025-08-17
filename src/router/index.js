@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 import Home from '../pages/Home.vue'
 import About from '../pages/About.vue'
@@ -10,7 +10,8 @@ import ResearchDetail from '../pages/ResearchDetail.vue'
 import PeopleProfile from '../pages/PeopleProfile.vue'
 
 const router = createRouter({
-  history: createWebHistory(),
+  // Use hash history for GitHub Pages reliability (no server-side rewrites)
+  history: createWebHashHistory(),
   routes: [
     { path: '/', name: 'home', component: Home },
     { path: '/about', name: 'about', component: About },
