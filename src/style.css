@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #F8FAFC; /* light background */
+  --surface: #FFFFFF;
+  --text: #0F172A; /* slate-900 for better contrast on light */
+  --text-muted: #475569;
+  --border: #E2E8F0;
+  --brand: #4F46E5; /* indigo-600 */
+  --brand-hover: #4338CA; /* indigo-700 */
+  --accent: #06B6D4; /* cyan-500 */
+}
+
+.dark {
+  --bg: #0F172A; /* dark background */
+  --surface: #1E293B;
+  --text: #F1F5F9;
+  --text-muted: #CBD5E1;
+  --border: #334155;
+  --brand: #818CF8; /* indigo-400 */
+  --brand-hover: #A5B4FC; /* indigo-300 */
+  --accent: #22D3EE; /* cyan-400 */
+}
+
+html {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, Noto Sans, "Helvetica Neue", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Spectral, Georgia, "Times New Roman", Times, serif;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* Clean, modern select styling (cross-browser) */
+.ui-select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 0.5rem;
+  height: 2.25rem;
+  padding-left: 0.5rem;
+  padding-right: 2rem; /* space for custom chevron */
+  box-shadow: none;
+}
+.ui-select:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Responsive page container with generous desktop gutters */
+.page-container {
+  max-width: 72rem; /* ~1152px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 768px) {
+  .page-container { padding-left: 2rem; padding-right: 2rem; }
+}
+@media (min-width: 1024px) {
+  .page-container { padding-left: 3rem; padding-right: 3rem; max-width: 80rem; }
+}
+@media (min-width: 1280px) {
+  .page-container { padding-left: 4rem; padding-right: 4rem; max-width: 85rem; }
+}
+@media (min-width: 1536px) {
+  .page-container { padding-left: 5rem; padding-right: 5rem; max-width: 90rem; }
+}
