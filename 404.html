@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; url=/mishra-lab-website-front-end/" />
+    <script>
+      // SPA fallback for GitHub Pages
+      var segment = '/mishra-lab-website-front-end';
+      var redirect = segment + '/';
+      var path = window.location.pathname;
+      if (path && !path.endsWith('/')) {
+        redirect += '#' + path.replace(segment, '');
+      }
+      window.location.replace(redirect);
+    </script>
+  </head>
+  <body></body>
+  </html>
+
+
