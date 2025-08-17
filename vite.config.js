@@ -6,6 +6,10 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   // Use relative base so it works under any subpath (GitHub Pages)
   base: './',
+  build: {
+    outDir: 'docs', // output directly to docs/ for GitHub Pages (deploy from branch)
+    emptyOutDir: true,
+  },
   plugins: [vue(),
     tailwindcss(),
   ],
